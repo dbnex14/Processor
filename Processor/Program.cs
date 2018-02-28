@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace Processor
+namespace RC.CodingChallenge
 {
     class MainClass
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello");
+            Console.ReadLine();
         }
     }
 }

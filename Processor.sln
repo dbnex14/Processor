@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor", "Processor\Processor.csproj", "{F4B0EF2B-520F-4D0C-99F3-BE43744E1708}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessorTest", "ProcessorTest\ProcessorTest.csproj", "{0BCA554D-DA38-49DC-9EF6-7193BFC1B920}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{F4B0EF2B-520F-4D0C-99F3-BE43744E1708}.Debug|x86.Build.0 = Debug|x86
 		{F4B0EF2B-520F-4D0C-99F3-BE43744E1708}.Release|x86.ActiveCfg = Release|x86
 		{F4B0EF2B-520F-4D0C-99F3-BE43744E1708}.Release|x86.Build.0 = Release|x86
+		{0BCA554D-DA38-49DC-9EF6-7193BFC1B920}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0BCA554D-DA38-49DC-9EF6-7193BFC1B920}.Debug|x86.Build.0 = Debug|Any CPU
+		{0BCA554D-DA38-49DC-9EF6-7193BFC1B920}.Release|x86.ActiveCfg = Release|Any CPU
+		{0BCA554D-DA38-49DC-9EF6-7193BFC1B920}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
