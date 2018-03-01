@@ -1,37 +1,55 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 //TODO
 // Stage3 takes >= 5 min only, currently, I take it all the time
-// threading
-// testing
-// using File.ReadLines uses StreamReader internaly
-// return Tupple<int, string, int>  (threadID, deviceID, counter)
+// IF TIME: mock thread testing
+// IF TIME: return Tupple<int, string, int>  (threadID, deviceID, counter)
 namespace RC.CodingChallenge
 {
     class MainClass
     {
+        const int _THREADS = 100;
+        const string _DEVICE_ID = "HV1";
+        const string _FILE_PATH = "/Users/dinob/Desktop/work/ReliableControls/Processor/Processor/HV1-2011-03-07.csv";
+
         public static void Main(string[] args)
+        {
+            Run();
+
+            Console.ReadLine();
+        }
+
+        public static void Run()
         {
             EventCounter vc = new EventCounter();
             Assembly assembly = Assembly.GetExecutingAssembly();
 
-            using (Stream fileStream = assembly.GetManifestResourceStream("Processor.HV1-2011-03-07.csv"))
+            using (FileStream fileStream = new FileStream(_FILE_PATH
+                                                          , FileMode.Open
+                                                          , FileAccess.Read))
             {
-                var lineCount = File.ReadLines("/Users/dinob/Desktop/work/ReliableControls/Processor/Processor/HV1-2011-03-07.csv").Count();
-                Console.WriteLine("Found {0} lines in file.", lineCount);
-
-                using (StreamReader reader = new StreamReader(fileStream))
+                using (TextReader reader = new StreamReader(fileStream))
                 {
-                    Parallel.For(0, 3, x => vc.ParseEvents("HV1", reader));
-                    Console.WriteLine(vc.GetEventCount("HV1"));
+                    vc.ParseEvents(_DEVICE_ID, (System.IO.StreamReader)reader);
+                    Thread[] threads = new Thread[_THREADS];
+                    for (int i = 0; i < _THREADS; i++)
+                    {
+                        int temp = i;
+                        threads[temp] = new Thread(() =>
+                        {
+                            vc.ParseEvents(_DEVICE_ID, (System.IO.StreamReader)reader);
+                        });
+                        threads[temp].Start();
+                    }
+
+                    Console.WriteLine(vc.GetEventCount(_DEVICE_ID));
                 }
             }
-
-            Console.ReadLine();
         }
+
     }
 }
