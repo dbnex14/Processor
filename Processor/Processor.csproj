@@ -41,5 +41,8 @@
     <Folder Include="Interfaces\" />
     <Folder Include="implementations\" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HV1-2011-03-07.csv" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
