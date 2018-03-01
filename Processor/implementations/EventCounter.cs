@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
+//TODO IDisposable
 namespace RC.CodingChallenge
 {
     enum FaultConditions 
