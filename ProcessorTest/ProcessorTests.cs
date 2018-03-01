@@ -80,8 +80,58 @@ namespace RC.CodingChallenge
         {
             mCounter.GetEventCount(null);
         }
+
+        [Test]
+        public void ProcessorTests_GetEventCount_NoFaultsDevice()
+        {
+            // Arrange
+            int expected = 0;
+
+            // Act
+            int actual = mCounter.GetEventCount("nofaultsdevice");
+
+            // Assert
+            Assert.AreEqual(expected, actual, "not equal");
+        }
         #endregion
 
 
+        #region PROCESSING
+
+        [Test]
+        public void ProcessorTests_ParseEvents_NoFaults()
+        {
+            // Arrange
+            int expected = 0;
+            Stream fileStream = mAssembly.GetManifestResourceStream("ProcessorTest.TestFiles.nofaults.csv");
+            StreamReader reader = new StreamReader(fileStream);
+
+            // Act
+            mCounter.ParseEvents("ABC", reader);
+            int actual = mCounter.GetEventCount("ABC");
+
+
+            // Assert
+            Assert.AreEqual(expected, actual, "not equal");
+        }
+
+        [Test]
+        public void ProcessorTests_ParseEvents_2Faults()
+        {
+            // Arrange
+            int expected = 2;
+            Stream fileStream = mAssembly.GetManifestResourceStream("ProcessorTest.TestFiles.hv1-2faults.csv");
+            StreamReader reader = new StreamReader(fileStream);
+
+            // Act
+            mCounter.ParseEvents("ABC", reader);
+            int actual = mCounter.GetEventCount("ABC");
+
+
+            // Assert
+            Assert.AreEqual(expected, actual, "not equal");
+        }
+
+        #endregion
     }
 }
