@@ -28,6 +28,7 @@ namespace RC.CodingChallenge
         public void Teardown()
         {
             mCounter = null;
+            mAssembly = null;
         }
 
         #region INIT TESTS
